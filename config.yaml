@@ -1,0 +1,51 @@
+# Pink Eye Detection Model Configuration
+
+# Data Configuration
+data:
+  raw_data_path: "data/raw"
+  processed_data_path: "data/processed"
+  splits_path: "data/splits"
+  image_size: [224, 224]
+  batch_size: 32
+  num_workers: 4
+  train_split: 0.7
+  val_split: 0.15
+  test_split: 0.15
+
+# Model Configuration
+model:
+  architecture: "efficientnet_b0"
+  num_classes: 2
+  pretrained: true
+  dropout_rate: 0.3
+  freeze_backbone: false
+
+# Training Configuration
+training:
+  epochs: 10
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  optimizer: "adam"
+  scheduler: "cosine"
+  early_stopping_patience: 10
+  save_best_only: true
+
+# Augmentation Configuration
+augmentation:
+  horizontal_flip: 0.5
+  rotation_range: 15
+  brightness_range: [0.8, 1.2]
+  contrast_range: [0.8, 1.2]
+  saturation_range: [0.8, 1.2]
+  hue_range: [-0.1, 0.1]
+
+# Class Labels
+classes:
+  0: "healthy_eye"
+  1: "infected_eye"
+
+# Paths
+paths:
+  model_save_dir: "models/saved"
+  logs_dir: "logs"
+  results_dir: "results"
